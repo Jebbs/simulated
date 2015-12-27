@@ -7,6 +7,7 @@ version(Windows)
 else version(linux)
 {
 	import simulated.linux.mouseimpl;
+	pragma(msg, "using the linux thing!");
 }
 else version(OSX)
 {
@@ -19,9 +20,9 @@ else
 
 final abstract class Mouse
 {
-	enum Buttons
+	enum Buttons:int
 	{
-		Left,
+		Left = 0,
 		Right,
 		Middle
 	}
@@ -33,7 +34,7 @@ final abstract class Mouse
 	* 	x =	x-pos of the screen.
 	*	y = y-pos of the screen.
 	**/
-	static void moveTo(uint x, uint y)
+	static void moveTo(short x, short y)
 	{
 		MouseImpl.moveTo(x,y);
 	}
@@ -45,7 +46,7 @@ final abstract class Mouse
 	* 	x =	x-pos of the screen, relative to current x-pos.
 	*	y = y-pos of the screen, relative to current y-pos.
 	**/
-	static void moveToRelative(uint x uint y)
+	static void moveToRelative(short x, short y)
 	{
 		MouseImpl.moveToRelative(x,y);
 	}
@@ -89,7 +90,7 @@ final abstract class Mouse
 		import core.thread, core.time;
 
 		buttonPress(button);
-		Thread.sleep(dur!("msecs")(15));
+		Thread.sleep(dur!("msecs")(30));
 		buttonRelease(button);
 
 	}

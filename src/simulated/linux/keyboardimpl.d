@@ -2,10 +2,12 @@ module simulated.linux.keyboardimpl;
 
 import simulated.keyboard;
 
+import simulated.linux.xcb;
+
+
+
 class KeyboardImpl
 {
-
-	//TODO:Put things here!
 
 	/**
 	* Cause a keyboard key to be pressed down.
@@ -15,9 +17,9 @@ class KeyboardImpl
 	* Params:
 	* 	key = The key to be pressed down.
 	**/
-	static void keyPress(Keyboad.Keys key)
+	static void keyPress(Keyboard.Keys key)
 	{
-
+		xcb_test_fake_input(getConnection(), XCB_KEY_PRESS, getKeyCode(key), XCB_CURRENT_TIME, XCB_NONE, 0,0,0);
 	}
 
 	/**
@@ -30,7 +32,27 @@ class KeyboardImpl
 	**/
 	static void keyRelease(Keyboard.Keys key)
 	{
+		xcb_test_fake_input(getConnection(), XCB_KEY_RELEASE, getKeyCode(key), XCB_CURRENT_TIME, XCB_NONE, 0,0,0);
+	}
+
+
+	//get the keycode for a particular key on linux
+	private static ubyte getKeyCode(int key)
+	{
+		static ubyte[int] keyCodes;
+
+		//set up keyCodes on first usage
+		if(keyCodes.length == 0)
+		{
+
+			//set up keycodes here
+
+		}
+
+		return keyCodes[key];
 
 	}
 
 }
+
+

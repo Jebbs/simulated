@@ -19,7 +19,7 @@ else
 
 class Keyboard
 {
-	enum Keys
+	enum Keys:int
 	{
 		A,
 		B,
@@ -65,8 +65,8 @@ class Keyboard
 	{
 		import core.thread, core.time;
 
-		keyPress(button);
+		keyPress(key);
 		Thread.sleep(dur!("msecs")(15));
-		keyRelease(button);
+		keyRelease(key);
 	} 
 }
