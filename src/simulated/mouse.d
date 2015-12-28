@@ -7,7 +7,6 @@ version(Windows)
 else version(linux)
 {
 	import simulated.linux.mouseimpl;
-	pragma(msg, "using the linux thing!");
 }
 else version(OSX)
 {

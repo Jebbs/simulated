@@ -19,10 +19,6 @@ final abstract class MouseImpl
 	**/
 	static void moveTo(short x, short y)
 	{
-		import std.stdio;
-
-		writeln("attempting to move to ", x, ",", y);
-
 		xpos = x;
 		ypos = y;
 

@@ -3,6 +3,9 @@ module simulated.linux.xcb;
 //module with some bindings to the xcb stuff
 
 
+//helper things
+
+package:
 
 //Get the xcb connection
 xcb_connection_t* getConnection()
@@ -12,10 +15,21 @@ xcb_connection_t* getConnection()
 	if(c is null)
 	{
 		c = new XcbConnection();
-		c.connect();
 	}
 
 	return c.xcbPointer;
+}
+
+xcb_key_symbols_t* getSymbols()
+{
+	static XcbKeySymbols s;
+
+	if(s is null)
+	{
+		s = new XcbKeySymbols();
+	}
+
+	return s.xcbPointer;
 }
 
 //Wrapper around
@@ -23,39 +37,63 @@ class XcbConnection
 {
 	xcb_connection_t* xcbPointer;
 
-
-	//connect to xcb with default everything.
-	void connect()
+	this()
 	{
-		import std.stdio;
 		xcbPointer = xcb_connect(null, null);
-		if(xcb_connection_has_error(xcbPointer) == 0)
-		{
-			writeln("No problems!");
-		}
-		else
-		{
-			writeln("Connection issues!");
-		}
+		assert(xcb_connection_has_error(xcbPointer) == 0);
 	}
-
-
+	
 	~this()
 	{
 		if(xcbPointer !is null)
 		{
-			import std.stdio;
-			writeln("Destroying the connection.");
 			xcb_disconnect(xcbPointer);
 		}
 	}
 }
 
+class XcbKeySymbols
+{
+	xcb_key_symbols_t* xcbPointer;
+
+	this()
+	{
+		xcbPointer = xcb_key_symbols_alloc(getConnection());
+	}
+
+	~this()
+	{
+		xcb_key_symbols_free(xcbPointer);
+	}
+}
+
+ubyte xcbGetKeyCode(uint keySymbol)
+{
+	import core.stdc.stdlib:free;
+
+	xcb_keycode_t* codes = xcb_key_symbols_get_keycode(getSymbols(),keySymbol);
 
 
+	//some codes only exist if they are on your actual keyboard layout
+	if(codes is null)
+	{
+		return 0;
+	}
 
+	//xcb demo uses only first key code if multiple codes are returned.
+	ubyte ret = codes[0];
+
+
+	//returned codes need to be free'd before exiting scope
+	free(codes);
+
+	return ret;
+}
+
+
+//binding
 extern(C):
-
+enum XCB_NO_SYMBOL = 0;
 enum XCB_NONE = 0;
 enum XCB_CURRENT_TIME = 0;
 enum XCB_KEY_PRESS = 2;
@@ -85,6 +123,16 @@ xcb_void_cookie_t xcb_test_fake_input_checked(xcb_connection_t* c, ubyte type, u
 struct xcb_generic_error_t;
 
 xcb_generic_error_t* xcb_request_check(xcb_connection_t* c, xcb_void_cookie_t cookie);
+
+alias xcb_keycode_t = ubyte;
+alias xcb_keysym_t = uint;
+struct xcb_key_symbols_t;
+
+xcb_key_symbols_t *xcb_key_symbols_alloc(xcb_connection_t* c);
+
+void xcb_key_symbols_free(xcb_key_symbols_t* syms);
+
+xcb_keycode_t * xcb_key_symbols_get_keycode(xcb_key_symbols_t* syms, xcb_keysym_t keysym);
 
 
 
