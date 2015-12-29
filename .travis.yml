@@ -9,9 +9,9 @@ sudo: false
 addons:
   apt:
     packages:
-      - libxcb-dev
+      - libX11-xcb-dev
       - libxcb-keysyms1-dev
-      - libxcb-test
+      - libxcb-xtest0-dev
 
 d: 
  - dmd-2.069.0
