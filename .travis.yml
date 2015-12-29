@@ -9,7 +9,7 @@ sudo: false
 addons:
   apt:
     packages:
-      - libX11-xcb-dev
+      - libx11-xcb-dev
       - libxcb-keysyms1-dev
       - libxcb-xtest0-dev
 
@@ -39,6 +39,7 @@ d:
 #assume only dmd on linux for the time being
 script: 
   - ${DMD} main.d src/simulated/package.d src/simulated/mouse.d src/simulated/linux/mouseimpl.d src/simulated/keyboard.d src/simulated/linux/keyboardimpl.d src/simulated/linux/xcb.d -L-lxcb -L-lxcb-xtest -L-lxcb-keysyms
+  - ./main
 
 
 
