@@ -19,9 +19,7 @@ void main()
 	Keyboard.keyPress(Keyboard.Keys.LShift);
 	Keyboard.keyType(Keyboard.Keys.A);
 	Keyboard.keyRelease(Keyboard.Keys.LShift);
-	Keyboard.keyType(Keyboard.Keys.B);
-	Thread.sleep(dur!("msecs")(115));
-	
+	Keyboard.keyType(Keyboard.Keys.B);	
 
 
 }
