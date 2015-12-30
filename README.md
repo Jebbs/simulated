@@ -1,6 +1,5 @@
 # simulated
 A keyboard and mouse input simulator.
-https://travis-ci.org/Jebbs/simulated.svg?branch=master
 [![Build Status](https://travis-ci.org/Jebbs/simulated.svg?branch=master)](https://travis-ci.org/Jebbs/simulated)
 
 What works:

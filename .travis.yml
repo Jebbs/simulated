@@ -35,10 +35,16 @@ d:
 #  - os: osx
 #    d: gdc-4.8.2
 
+#Let's start an X server!
+before_script:
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+  - sleep 3 # give xvfb some time to start
 
 #assume only dmd on linux for the time being
 script: 
   - ${DMD} main.d src/simulated/package.d src/simulated/mouse.d src/simulated/linux/mouseimpl.d src/simulated/keyboard.d src/simulated/linux/keyboardimpl.d src/simulated/linux/xcb.d -L-lxcb -L-lxcb-xtest -L-lxcb-keysyms
+  - echo $DISPLAY
   - ./main
 
 
