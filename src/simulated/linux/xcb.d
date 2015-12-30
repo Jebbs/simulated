@@ -113,6 +113,7 @@ class XcbKeySymbols
 
 ubyte xcbGetKeyCode(uint keySymbol)
 {
+	static int numberNotFound = 0;
 	import core.stdc.stdlib:free;
 
 	xcb_keycode_t* codes = xcb_key_symbols_get_keycode(getSymbols(),keySymbol);
@@ -121,6 +122,12 @@ ubyte xcbGetKeyCode(uint keySymbol)
 	//some codes only exist if they are on your actual keyboard layout
 	if(codes is null)
 	{
+		numberNotFound++;
+
+		import std.stdio;
+
+		writeln("Number of keys not found so far = ", numberNotFound);
+
 		return 0;
 	}
 
