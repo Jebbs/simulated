@@ -82,7 +82,7 @@ class XcbConnection
 			} 
 
 
-    	assert(0, "xcb Connection failed: " ~ );
+    	assert(0, "xcb Connection failed: " ~ errorMessage);
 		}
 		
 	}
