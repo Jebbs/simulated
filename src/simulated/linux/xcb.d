@@ -40,7 +40,51 @@ class XcbConnection
 	this()
 	{
 		xcbPointer = xcb_connect(null, null);
-		assert(xcb_connection_has_error(xcbPointer) == 0);
+
+		int err = xcb_connection_has_error(xcbPointer);
+
+		if(err!=0)
+		{
+			string errorMessage;
+			final switch(err)
+			{
+
+			    case XCB_CONN_ERROR:
+			    	{
+			    		errorMessage = "Socket errors, pipe errors or other stream errors.";
+			    		break;
+			    	}
+			    	case XCB_CONN_CLOSED_EXT_NOTSUPPORTED:
+			    	{
+			    		errorMessage = "Extension not supported.";
+			    		break;
+			    	}
+			    	case XCB_CONN_CLOSED_MEM_INSUFFICIENT:
+			    	{
+			    		errorMessage = "Memory not available.";
+			    		break;
+			    	}
+			    	case XCB_CONN_CLOSED_REQ_LEN_EXCEED:
+			    	{
+			    		errorMessage = "Exceeding request length that server accepts.";
+			    		break;
+			    	}
+			    	case XCB_CONN_CLOSED_PARSE_ERR:
+			    	{
+			    		errorMessage = "Error during parsing display string.";
+			    		break;
+			    	}
+			    	case XCB_CONN_CLOSED_INVALID_SCREEN:
+			    	{
+			    		errorMessage = "Server does not have a screen matching the display.";
+			    		break;
+			    	}
+			} 
+
+
+    	assert(0, "xcb Connection failed: " ~ );
+		}
+		
 	}
 	
 	~this()
@@ -102,6 +146,13 @@ enum XCB_BUTTON_PRESS = 4;
 enum XCB_BUTTON_RELEASE = 5;
 enum XCB_MOTION_NOTIFY = 6;
 
+//connection errors
+enum XCB_CONN_ERROR = 1;
+enum XCB_CONN_CLOSED_EXT_NOTSUPPORTED = 2;
+enum XCB_CONN_CLOSED_MEM_INSUFFICIENT = 3;
+enum XCB_CONN_CLOSED_REQ_LEN_EXCEED = 4;
+enum XCB_CONN_CLOSED_PARSE_ERR = 5;
+enum XCB_CONN_CLOSED_INVALID_SCREEN = 6;
 
 struct xcb_connection_t;
 
