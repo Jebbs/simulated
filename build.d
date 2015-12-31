@@ -101,7 +101,7 @@ void initializeGDC()
 	else if(isLinux)
 	{
 		implementationFiles = "src/simulated/linux/mouseimpl.d src/simulated/linux/keyboardimpl.d src/simulated/linux/xcb.d ";
-		dependencies = "-lxcb -lxcb-xtest -lxcb-keysyms";
+		dependencies = "-lxcb -lxcb-xtest -lxcb-keysyms -o main";
 	}
 	else
 	{
