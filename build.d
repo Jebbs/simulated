@@ -82,12 +82,12 @@ void initializeDMD()
 	}
 	else if(isLinux)
 	{
-		implementationFiles = "src/simulated/linux/mouseimpl.d src/simulated/linux/keyboardimpl.d src/simulated/linux/xcb.d "
+		implementationFiles = "src/simulated/linux/mouseimpl.d src/simulated/linux/keyboardimpl.d src/simulated/linux/xcb.d ";
 		dependencies = "-L-lxcb -L-lxcb-xtest -L-lxcb-keysyms";
 	}
 	else
 	{
-		implementationFiles = "src/simulated/osx/mouseimpl.d src/simulated/osx/keyboardimpl.d src/simulated/osx/coregraphics.d "
+		implementationFiles = "src/simulated/osx/mouseimpl.d src/simulated/osx/keyboardimpl.d src/simulated/osx/coregraphics.d ";
 		dependencies = "";
 	}
 }
@@ -100,7 +100,7 @@ void initializeGDC()
 	}
 	else if(isLinux)
 	{
-		implementationFiles = "src/simulated/linux/mouseimpl.d src/simulated/linux/keyboardimpl.d src/simulated/linux/xcb.d "
+		implementationFiles = "src/simulated/linux/mouseimpl.d src/simulated/linux/keyboardimpl.d src/simulated/linux/xcb.d ";
 		dependencies = "-lxcb -lxcb-xtest -lxcb-keysyms";
 	}
 	else
@@ -118,12 +118,12 @@ void initializeLDC()
 	}
 	else if(isLinux)
 	{
-		implementationFiles = "src/simulated/linux/mouseimpl.d src/simulated/linux/keyboardimpl.d src/simulated/linux/xcb.d "
+		implementationFiles = "src/simulated/linux/mouseimpl.d src/simulated/linux/keyboardimpl.d src/simulated/linux/xcb.d ";
 		dependencies = "-L=-lxcb -L=-lxcb-xtest -L=-lxcb-keysyms";
 	}
 	else
 	{
-		implementationFiles = "src/simulated/osx/mouseimpl.d src/simulated/osx/keyboardimpl.d src/simulated/osx/coregraphics.d "
+		implementationFiles = "src/simulated/osx/mouseimpl.d src/simulated/osx/keyboardimpl.d src/simulated/osx/coregraphics.d ";
 		dependencies = "";
 	}
 }
