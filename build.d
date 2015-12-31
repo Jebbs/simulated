@@ -138,6 +138,8 @@ int main()
 
 	string buildCommand = compiler ~ coreFiles ~ implementationFiles ~ dependencies;
 
+	writeln(buildCommand);
+
 	auto status = executeShell(buildCommand);
 
 	if(status.status !=0)
