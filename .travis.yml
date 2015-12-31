@@ -18,12 +18,12 @@ d:
  - dmd-2.068.2
  - dmd-2.067.1
  - dmd-2.066.1
-# - gdc-5.2.0
-# - gdc-4.9.3
-# - gdc-4.8.2
-# - ldc-0.16.1
-# - ldc-0.16.0
-# - ldc-0.15.1
+ - gdc-5.2.0
+ - gdc-4.9.3
+ - gdc-4.8.2
+ - ldc-0.16.1
+ - ldc-0.16.0
+ - ldc-0.15.1
 
 #GDC is not supported on OS X :(
 #matrix:
@@ -43,8 +43,8 @@ before_script:
 
 #assume only dmd on linux for the time being
 script: 
-  - ${DMD} main.d src/simulated/package.d src/simulated/mouse.d src/simulated/linux/mouseimpl.d src/simulated/keyboard.d src/simulated/linux/keyboardimpl.d src/simulated/linux/xcb.d -L-lxcb -L-lxcb-xtest -L-lxcb-keysyms
-  - echo $DISPLAY
+  - ${DMD} build.d
+  - ./build
   - ./main
 
 
