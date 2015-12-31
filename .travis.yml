@@ -37,6 +37,7 @@ matrix:
 
 #Let's start an X server!
 before_script:
+  - export DISPLAY=:99.0
   - sh xvfb_setup.sh
 
 #assume only dmd on linux for the time being
