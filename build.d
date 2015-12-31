@@ -54,7 +54,7 @@ else
 }
 
 
-string coreFiles = "main.d -Isrc/ src/simulated/package.d src/simulated/mouse.d src/simulated/keyboard.d";
+string coreFiles = "main.d -I/src/ src/simulated/package.d src/simulated/mouse.d src/simulated/keyboard.d";
 string implementationFiles;
 string dependencies;
 
