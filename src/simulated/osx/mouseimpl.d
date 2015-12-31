@@ -1,12 +1,15 @@
 module simulated.osx.mouseimpl;
 
 import simulated.mouse;
+import simulated.osx.coregraphics;
 
 final abstract class MouseImpl
 {
 
-	//TODO:Put things here!
 
+	//start at (0,0) and store coordinates. It just makes things easier for the time being.
+	static short xpos,ypos;
+	
 	/**
 	* Move the mouse to a specific location
 	*
@@ -14,9 +17,12 @@ final abstract class MouseImpl
 	* 	x =	x-pos of the screen.
 	*	y = y-pos of the screen.
 	**/
-	static void moveTo(uint x, uint y)
+	static void moveTo(short x, short y)
 	{
+		xpos = x;
+		ypos = y;
 
+		
 	}
 
 	/**
@@ -26,9 +32,10 @@ final abstract class MouseImpl
 	* 	x =	x-pos of the screen, relative to current x-pos.
 	*	y = y-pos of the screen, relative to current y-pos.
 	**/
-	static void moveToRelative(uint x uint y)
+	static void moveToRelative(short x, short y)
 	{
-
+		
+		moveTo(cast(short)(x + xpos), cast(short)(y + ypos));
 	}
 
 	/**
@@ -42,6 +49,8 @@ final abstract class MouseImpl
 	static void buttonPress(Mouse.Buttons button)
 	{
 
+		
+		
 	}
 
 	/**
@@ -54,6 +63,31 @@ final abstract class MouseImpl
 	**/
 	static void buttonRelease(Mouse.Buttons button)
 	{
+
+		
+	}
+
+	//get the buttoncode for a particular button on linux
+	private static ubyte getButtonCode(int button)
+	{
+		static ubyte[int] buttonCodes;
+
+		//set up buttonCodes on first usage
+		if(buttonCodes.length == 0)
+		{
+
+			//set up buttonCodes here
+
+			//left mouse button
+			buttonCodes[0] = 1;
+			//right mouse button
+			buttonCodes[1] = 3;
+			//middle mouse button
+			buttonCodes[2] = 2;
+
+		}
+
+		return buttonCodes[button];
 
 	}
 
