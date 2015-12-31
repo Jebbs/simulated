@@ -39,7 +39,7 @@ matrix:
 before_script:
   - export DISPLAY=:99.0
   - echo $OSTYPE
-  - if [[ "$OSTYPE" == "linux-gnu" ]]; then "sh -e /etc/init.d/xvfb start" && sleep 3 fi
+  - if [[ "$OSTYPE" == "linux-gnu" ]]; then "sh -e /etc/init.d/xvfb start" && sleep 3; fi
 
 #assume only dmd on linux for the time being
 script: 
