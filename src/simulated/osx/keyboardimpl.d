@@ -2,10 +2,12 @@ module simulated.osx.keyboardimpl;
 
 import simulated.keyboard;
 
+import simulated.osx.coregraphics;
+
+
+
 class KeyboardImpl
 {
-
-	//TODO:Put things here!
 
 	/**
 	* Cause a keyboard key to be pressed down.
@@ -15,7 +17,7 @@ class KeyboardImpl
 	* Params:
 	* 	key = The key to be pressed down.
 	**/
-	static void keyPress(Keyboad.Keys key)
+	static void keyPress(Keyboard.Keys key)
 	{
 
 	}
@@ -33,4 +35,21 @@ class KeyboardImpl
 
 	}
 
+
+	//get the keycode for a particular key on linux
+	private static ubyte getKeyCode(int key)
+	{
+		static ubyte[int] keyCodes;
+		//set up keyCodes on first usage
+		if(keyCodes.length == 0)
+		{
+
+		}
+
+		return keyCodes[key];
+
+	}
+
 }
+
+
